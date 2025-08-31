@@ -19,5 +19,8 @@ public class AppointmentNotificationQueueConsumerImpl implements AppointmentNoti
         System.out.println("Appointment notes: " + appointment.getNotes());
         System.out.println("Appointment date time: " + appointment.getDateTime());
         System.out.println("Appointment version: " + appointment.getVersion());
+        // TODO: create appointment-history-service (same deps + graphql)
+        // TODO: consume messages exactly as notification service
+        // TODO: create any config in the common module?
     }
 }
