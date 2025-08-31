@@ -21,9 +21,9 @@ public class AppointmentNotificationQueueConsumerImpl {
         System.out.println("Appointment doctor name: " + appointmentMessage.getDoctorName());
         System.out.println("Appointment patient name: " + appointmentMessage.getPatientName());
         System.out.println("Appointment patient email: " + appointmentMessage.getPatientEmail());
-        // TODO: create appointment-history-service (same deps + graphql)
-        // TODO: consume messages exactly as notification service
-        // TODO: create any config in the common module?
-        // TODO: store last sent email? -> compare... status updated from X to Y, Notes.. from Z to A??
+        // TODO: store last sent email (same appointment id)? -> compare... status updated from X to Y, Notes.. from Z to A??
+        // TODO: create a job to periodically analyze certain status of COMPLETION and remove from the db -> every 3 months at 03:00am??
+        // configure env variables for all projects
+        // mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
     }
 }
