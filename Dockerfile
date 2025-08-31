@@ -5,6 +5,10 @@ FROM maven:3.9.8-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
+# Copy common first
+COPY common /app/common
+RUN mvn -f /app/common/pom.xml clean install -DskipTests
+
 # Copy notification_service pom and fetch dependencies
 COPY notification_service/pom.xml /app/notification_service/pom.xml
 RUN mvn -f /app/notification_service/pom.xml dependency:go-offline -B

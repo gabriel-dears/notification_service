@@ -13,31 +13,21 @@ public class RabbitMQNotificationConfig {
     public static final String APPOINTMENT_EXCHANGE = "appointment.exchange";
     public static final String NOTIFICATION_QUEUE = "notification.queue";
 
-    // Exchange
     @Bean
     public FanoutExchange appointmentExchange() {
         return new FanoutExchange(APPOINTMENT_EXCHANGE);
     }
 
-    // Queue
     @Bean
     public Queue notificationQueue() {
         return QueueBuilder.durable(NOTIFICATION_QUEUE).build();
     }
 
-    // Binding
     @Bean
     public Binding bindingHistory(Queue notificationQueue, FanoutExchange appointmentExchange) {
         return BindingBuilder.bind(notificationQueue).to(appointmentExchange);
     }
 
-    // Message converter para JSON
-    @Bean
-    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-
-    // Listener container factory com converter JSON
     @Bean
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
             ConnectionFactory connectionFactory,
