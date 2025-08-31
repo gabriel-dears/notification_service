@@ -1,16 +1,14 @@
 package com.hospital_app.notification_service.infra.adapter.out.message;
 
 import com.hospital_app.common.message.dto.AppointmentMessage;
-import com.hospital_app.notification_service.application.port.out.message.AppointmentNotificationQueueConsumer;
-import com.hospital_app.notification_service.domain.model.Appointment;
+import com.hospital_app.notification_service.infra.config.message.rabbitmq.RabbitMQNotificationConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AppointmentNotificationQueueConsumerImpl implements AppointmentNotificationQueueConsumer {
+public class AppointmentNotificationQueueConsumerImpl {
 
-    @RabbitListener(queues = "notification.queue")
-    @Override
+    @RabbitListener(queues = RabbitMQNotificationConfig.NOTIFICATION_QUEUE)
     public void consume(AppointmentMessage appointmentMessage) {
         System.out.println("Appointment received: " + appointmentMessage);
         System.out.println("Appointment id: " + appointmentMessage.getId());
