@@ -18,5 +18,6 @@ public class AppointmentNotificationQueueConsumerImpl implements AppointmentNoti
         System.out.println("Appointment status: " + appointment.getStatus());
         System.out.println("Appointment notes: " + appointment.getNotes());
         System.out.println("Appointment date time: " + appointment.getDateTime());
+        System.out.println("Appointment version: " + appointment.getVersion());
     }
 }
