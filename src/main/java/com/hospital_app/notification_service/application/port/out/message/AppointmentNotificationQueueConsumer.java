@@ -1,7 +1,7 @@
 package com.hospital_app.notification_service.application.port.out.message;
 
-import com.hospital_app.notification_service.domain.model.Appointment;
+import com.hospital_app.common.message.dto.AppointmentMessage;
 
 public interface AppointmentNotificationQueueConsumer {
-    void consume(Appointment appointment);
+    void consume(AppointmentMessage appointmentMessage);
 }
