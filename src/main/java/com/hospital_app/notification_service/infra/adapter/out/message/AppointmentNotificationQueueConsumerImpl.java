@@ -25,7 +25,6 @@ public class AppointmentNotificationQueueConsumerImpl {
         // TODO: create a job to periodically analyze certain status of COMPLETION and remove from the db -> every 3 months at 03:00am??
         // TODO: configure env variables for all projects
         // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
-        // TODO: remove insomnia collections from user service and put it on hospital_app
         // TODO: documentation -> swagger...README file... javadocs... verify for each project and create google doc (microservices interaction and hexagonal arc.)
         // repo: https://github.com/gabriel-dears/hospital_app
     }
