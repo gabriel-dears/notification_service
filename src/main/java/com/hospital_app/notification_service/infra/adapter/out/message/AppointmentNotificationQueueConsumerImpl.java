@@ -21,7 +21,10 @@ public class AppointmentNotificationQueueConsumerImpl {
         System.out.println("Appointment doctor name: " + appointmentMessage.getDoctorName());
         System.out.println("Appointment patient name: " + appointmentMessage.getPatientName());
         System.out.println("Appointment patient email: " + appointmentMessage.getPatientEmail());
-        // TODO: store last sent email (same appointment id)? -> compare... status updated from X to Y, Notes.. from Z to A??
+        // TODO: create db -> integrate with the application -> entity -> domain model
+        // TODO: integrate flow with the db... only after sending (no failures) - simulate or comment sending in the first moment... success scenario,
+        //  store last email sent (same appointment id)? -> compare... status updated from X to Y, Notes.. from Z to A??
+        // TODO: configure application to send email -> verify how to do it and create email template
         // TODO: create a job to periodically analyze certain status of COMPLETION and remove from the db -> every 3 months at 03:00am??
         // TODO: configure env variables for all projects
         // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
