@@ -1,12 +1,19 @@
 package com.hospital_app.notification_service.infra.adapter.out.message;
 
 import com.hospital_app.common.message.dto.AppointmentMessage;
+import com.hospital_app.notification_service.application.port.in.SendAppointmentEmailUseCase;
 import com.hospital_app.notification_service.infra.config.message.rabbitmq.RabbitMQNotificationConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AppointmentNotificationQueueConsumerImpl {
+
+    private final SendAppointmentEmailUseCase sendAppointmentEmailUseCase;
+
+    public AppointmentNotificationQueueConsumerImpl(SendAppointmentEmailUseCase sendAppointmentEmailUseCase) {
+        this.sendAppointmentEmailUseCase = sendAppointmentEmailUseCase;
+    }
 
     @RabbitListener(queues = RabbitMQNotificationConfig.NOTIFICATION_QUEUE)
     public void consume(AppointmentMessage appointmentMessage) {
@@ -21,6 +28,11 @@ public class AppointmentNotificationQueueConsumerImpl {
         System.out.println("Appointment doctor name: " + appointmentMessage.getDoctorName());
         System.out.println("Appointment patient name: " + appointmentMessage.getPatientName());
         System.out.println("Appointment patient email: " + appointmentMessage.getPatientEmail());
+
+        // TODO: create mapper: message -> email
+
+        sendAppointmentEmailUseCase.execute(null);
+
         // TODO: create db -> integrate with the application -> entity -> domain model
         // TODO: integrate flow with the db... only after sending (no failures) - simulate or comment sending in the first moment... success scenario,
         //  store last email sent (same appointment id)? -> compare... status updated from X to Y, Notes.. from Z to A??
