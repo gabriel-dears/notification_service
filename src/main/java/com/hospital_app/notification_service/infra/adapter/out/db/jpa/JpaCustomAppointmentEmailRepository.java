@@ -22,8 +22,9 @@ public class JpaCustomAppointmentEmailRepository implements CustomAppointmentEma
 
     @Override
     public Optional<AppointmentEmail> findByAppointmentId(UUID id) {
-        Optional<JpaAppointmentEmailEntity> optEntity = AppointmentEmailDbOperationWrapper.execute(() -> repository.findById(id));
+        Optional<JpaAppointmentEmailEntity> optEntity = AppointmentEmailDbOperationWrapper.execute(() -> repository.findByAppointmentId((id)));
         return optEntity.map(jpaAppointmentEmailMapper::toDomain);
+
     }
 
     @Override

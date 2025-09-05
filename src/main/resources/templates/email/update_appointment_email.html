@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Update</title>
+</head>
+    <body>
+        <p>Hi <strong th:text="${patientName}">Patient Name</strong>! 👋</p>
+
+        <p>Your appointment has been updated. Here are the details:</p>
+
+        <pre th:text="${changes}">
+                Changes go here...
+        </pre>
+
+        <p>
+            <strong>Appointment ID:</strong> <span th:text="${appointmentId}">12345</span>
+        </p>
+
+        <p th:if="${status != 'COMPLETED' and status != 'NO_SHOW' and status != 'CANCELLED'}">
+            <strong>Date & Time:</strong> <span th:text="${appointmentDate}">2025-09-05 10:00</span><br/>
+        </p>
+
+        <p>
+            <strong>Doctor:</strong> <span th:text="${doctorName}">Dr. Smith</span><br/>
+            <strong>Notes:</strong> <span th:text="${notes}">None</span>
+        </p>
+
+        <p th:if="${status != 'COMPLETED' and status != 'NO_SHOW' and status != 'CANCELLED'}">
+            Looking forward to seeing you! 😊
+        </p>
+
+        <p>Best regards,<br/>FIAP Hospital Team</p>
+    </body>
+</html>

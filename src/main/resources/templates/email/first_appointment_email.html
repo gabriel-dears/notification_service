@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Appointment</title>
+</head>
+    <body>
+        <p>Hi <strong th:text="${patientName}">Patient Name</strong>! 👋</p>
+
+        <p>We are excited to have you! Here are your appointment details:</p>
+
+        <p>
+            <strong>Appointment ID:</strong> <span th:text="${appointmentId}">12345</span>
+        </p>
+
+        <p>
+            <strong>Date & Time:</strong> <span th:text="${appointmentDate}">2025-09-05 10:00</span><br/>
+            <strong>Doctor:</strong> <span th:text="${doctorName}">Dr. Smith</span><br/>
+            <strong>Notes:</strong> <span th:text="${notes}">None</span>
+        </p>
+
+        <p>Looking forward to seeing you! 😊</p>
+        <p>Best regards,<br/>FIAP Hospital Team</p>
+    </body>
+</html>
