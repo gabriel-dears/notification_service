@@ -35,7 +35,7 @@ public class SendAppointmentEmailUseCaseImpl implements SendAppointmentEmailUseC
             customAppointmentEmailRepository.save(appointmentEmail);
 
         } catch (Exception ex) {
-
+            // TODO: create custom exception
         }
 
 
