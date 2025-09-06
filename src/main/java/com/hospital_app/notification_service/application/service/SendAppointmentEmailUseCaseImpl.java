@@ -27,18 +27,6 @@ public class SendAppointmentEmailUseCaseImpl implements SendAppointmentEmailUseC
             AppointmentEmail existingAppointmentEmail = existingAppointmentEmailOpt.get();
             appointmentEmailForUpdateSender.sendAppointmentEmail(existingAppointmentEmail, appointmentEmail);
             AppointmentEmailMapper.updateNonNullFields(appointmentEmail, existingAppointmentEmail);
-            System.out.println("Appointment sent - email: " + existingAppointmentEmail);
-            System.out.println("Appointment id: " + existingAppointmentEmail.getId());
-            System.out.println("Appointment doctor id: " + existingAppointmentEmail.getDoctorId());
-            System.out.println("Appointment patient id: " + existingAppointmentEmail.getPatientId());
-            System.out.println("Appointment status: " + existingAppointmentEmail.getStatus());
-            System.out.println("Appointment notes: " + existingAppointmentEmail.getNotes());
-            System.out.println("Appointment date time: " + existingAppointmentEmail.getDateTime());
-            System.out.println("Appointment version: " + existingAppointmentEmail.getVersion());
-            System.out.println("Appointment doctor name: " + existingAppointmentEmail.getDoctorName());
-            System.out.println("Appointment patient name: " + existingAppointmentEmail.getPatientName());
-            System.out.println("Appointment patient email: " + existingAppointmentEmail.getPatientEmail());
-
             customAppointmentEmailRepository.save(existingAppointmentEmail);
         } else {
             newAppointmentEmailSender.sendAppointmentEmail(appointmentEmail);

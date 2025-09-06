@@ -21,26 +21,18 @@ public class AppointmentNotificationQueueConsumerImpl {
 
     @RabbitListener(queues = RabbitMQNotificationConfig.NOTIFICATION_QUEUE)
     public void consume(AppointmentMessage appointmentMessage) {
-        System.out.println("Appointment received: " + appointmentMessage);
-        System.out.println("Appointment id: " + appointmentMessage.getId());
-        System.out.println("Appointment doctor id: " + appointmentMessage.getDoctorId());
-        System.out.println("Appointment patient id: " + appointmentMessage.getPatientId());
-        System.out.println("Appointment status: " + appointmentMessage.getStatus());
-        System.out.println("Appointment notes: " + appointmentMessage.getNotes());
-        System.out.println("Appointment date time: " + appointmentMessage.getDateTime());
-        System.out.println("Appointment version: " + appointmentMessage.getVersion());
-        System.out.println("Appointment doctor name: " + appointmentMessage.getDoctorName());
-        System.out.println("Appointment patient name: " + appointmentMessage.getPatientName());
-        System.out.println("Appointment patient email: " + appointmentMessage.getPatientEmail());
-
         AppointmentEmail appointmentEmail = messageAppointmentEmailMapper.toEmail(appointmentMessage);
         sendAppointmentEmailUseCase.execute(appointmentEmail);
 
         // TODO: configs to send email -  retry? and so on....
-        // TODO: configure env variables for all projects
-        // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
         // TODO: create a job to periodically analyze certain status of COMPLETION and remove from the db -> every 3 months at 03:00am??
-        // TODO: verify unit tests - notification project
+
+
+
+        // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
+
+        // TODO: configure env variables for all projects
+
         // TODO: documentation -> swagger...README file... javadocs... verify for each project and create google doc (microservices interaction and hexagonal arc.)
         // .env.example
         // repo: https://github.com/gabriel-dears/hospital_app
