@@ -7,6 +7,7 @@ import com.hospital_app.notification_service.infra.mapper.JpaAppointmentEmailMap
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Repository
@@ -32,6 +33,14 @@ public class JpaCustomAppointmentEmailRepository implements CustomAppointmentEma
         JpaAppointmentEmailEntity entity = jpaAppointmentEmailMapper.toEntity(appointmentEmail);
         JpaAppointmentEmailEntity savedEntity = AppointmentEmailDbOperationWrapper.execute(() -> repository.save(entity));
         return jpaAppointmentEmailMapper.toDomain(savedEntity);
+    }
+
+    @Override
+    public void deleteObsolete() {
+        AppointmentEmailDbOperationWrapper.execute(() -> {
+            repository.deleteByStatusIn(Set.of("COMPLETED", "NO_SHOW", "CANCELLED"));
+            return null;
+        });
     }
 
 }

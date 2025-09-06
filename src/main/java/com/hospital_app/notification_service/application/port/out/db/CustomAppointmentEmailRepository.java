@@ -11,4 +11,5 @@ public interface CustomAppointmentEmailRepository {
 
     AppointmentEmail save(AppointmentEmail appointmentEmail);
 
+    void deleteObsolete();
 }

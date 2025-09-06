@@ -24,10 +24,7 @@ public class AppointmentNotificationQueueConsumerImpl {
         AppointmentEmail appointmentEmail = messageAppointmentEmailMapper.toEmail(appointmentMessage);
         sendAppointmentEmailUseCase.execute(appointmentEmail);
 
-        // TODO: configs to send email -  retry? and so on....
         // TODO: create a job to periodically analyze certain status of COMPLETION and remove from the db -> every 3 months at 03:00am??
-
-
 
         // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
 
