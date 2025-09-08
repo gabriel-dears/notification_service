@@ -42,15 +42,4 @@ resilience4j:
         exponential-backoff-multiplier: 2.0  # Optional: increase wait exponentially
         retry-exceptions:
           - java.lang.Exception  # Retry on any exception
-  circuitbreaker:
-    instances:
-      emailCircuitBreaker:
-        register-health-indicator: true
-        sliding-window-type: COUNT_BASED
-        sliding-window-size: 5         # Number of calls to consider
-        minimum-number-of-calls: 3     # Minimum calls before calculating failure rate
-        failure-rate-threshold: 50     # % of failures to open the circuit
-        wait-duration-in-open-state: 60s  # Wait 1 minute before trying again
-        slow-call-duration-threshold: 10s # Optional: consider a call slow if >5s
-        slow-call-rate-threshold: 50    # % of slow calls to open circuit
 

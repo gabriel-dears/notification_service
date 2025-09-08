@@ -25,9 +25,7 @@ public class AppointmentNotificationQueueConsumerImpl {
         sendAppointmentEmailUseCase.execute(appointmentEmail);
 
         // TODO: mTLS for gRPC communication and check how to do it with graphQL and RabbitMQ
-
         // TODO: configure env variables for all projects
-
         // TODO: documentation -> swagger...README file... javadocs... verify for each project and create google doc (microservices interaction and hexagonal arc.)
         // .env.example
         // repo: https://github.com/gabriel-dears/hospital_app
