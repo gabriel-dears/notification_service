@@ -3,18 +3,18 @@ spring:
     name: notification_service
 
   rabbitmq:
-    host: rabbitmq
-    port: 5671
-    username: guest
-    password: guest
+    host: ${HOSPITAL_APP_RABBITMQ_HOST}
+    port: ${HOSPITAL_APP_RABBITMQ_PORT}
+    username: ${HOSPITAL_APP_RABBITMQ_USER}
+    password: ${HOSPITAL_APP_RABBITMQ_PASS}
     ssl:
-      enabled: true
-      algorithm: TLSv1.2
-      validate-server-certificate: true
-      key-store: classpath:rabbitmq/client_keystore.p12  # convert client.key+client.crt into PKCS12
-      key-store-password: changeit
-      trust-store: classpath:rabbitmq/truststore.p12     # contains CA cert
-      trust-store-password: changeit
+      enabled: ${HOSPITAL_APP_RABBITMQ_SSL_ENABLED}
+      algorithm: ${HOSPITAL_APP_RABBITMQ_SSL_ALGO}
+      validate-server-certificate: ${HOSPITAL_APP_RABBITMQ_SSL_VALIDATE}
+      key-store: ${HOSPITAL_APP_RABBITMQ_KEYSTORE}
+      key-store-password: ${HOSPITAL_APP_RABBITMQ_KEYSTORE_PASS}
+      trust-store: ${HOSPITAL_APP_RABBITMQ_TRUSTSTORE}
+      trust-store-password: ${HOSPITAL_APP_RABBITMQ_TRUSTSTORE_PASS}
 
   datasource:
     url: ${HOSPITAL_APP_NOTIFICATION_SERVICE_DB_URL}
@@ -31,10 +31,10 @@ spring:
     show-sql: true
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: gabrieldears@gmail.com
-    password: xzqp btbu torv hehk
+    host: ${HOSPITAL_APP_NOTIFICATION_SERVICE_MAIL_HOST}
+    port: ${HOSPITAL_APP_NOTIFICATION_SERVICE_MAIL_PORT}
+    username: ${HOSPITAL_APP_NOTIFICATION_SERVICE_MAIL_USER}
+    password: ${HOSPITAL_APP_NOTIFICATION_SERVICE_MAIL_PASS}
     properties:
       mail:
         smtp:
@@ -46,9 +46,8 @@ resilience4j:
   retry:
     instances:
       emailRetry:
-        max-attempts: 3          # Retry 3 times
-        wait-duration: 30s       # Wait 30 seconds between retries
-        exponential-backoff-multiplier: 2.0  # Optional: increase wait exponentially
+        max-attempts: 3
+        wait-duration: 30s
+        exponential-backoff-multiplier: 2.0
         retry-exceptions:
-          - java.lang.Exception  # Retry on any exception
-
+          - java.lang.Exception
