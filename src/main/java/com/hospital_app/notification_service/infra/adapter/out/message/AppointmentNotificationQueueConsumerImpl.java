@@ -24,7 +24,6 @@ public class AppointmentNotificationQueueConsumerImpl {
         AppointmentEmail appointmentEmail = messageAppointmentEmailMapper.toEmail(appointmentMessage);
         sendAppointmentEmailUseCase.execute(appointmentEmail);
         // TODO: documentation -> swagger...README file... javadocs... verify for each project and create google doc (microservices interaction and hexagonal arc.)
-        // .env.example
         // repo: https://github.com/gabriel-dears/hospital_app
     }
 }
